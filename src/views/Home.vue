@@ -425,6 +425,8 @@ import {paymentScreens} from 'db/payment-screens'
 import { mapGetters } from 'vuex'
 
 import {displayAds} from 'utils/helpers'
+import {getExtAds} from 'utils/helpers'
+
 
 import '../../node_modules/slick-carousel/slick/slick.css'
 import Slick from 'vue-slick'

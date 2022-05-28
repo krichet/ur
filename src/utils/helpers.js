@@ -35,24 +35,57 @@ export const getExtAds = (mode, cnt) => {
   )           
 }
 
-let str = '<script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script> <script type="text/javascript" src="11111"></script><div class="rocket">testdivcone</div>'
+let str = '<script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script> <script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script> <script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script>  <script type="text/javascript"> var infolinks_pid = 2033479; var infolinks_wsid = 0; </script>   <div class="rocket">testdivcone</div> <div class="rocket">testdivcone</div>'
 
 export const displayAds = () => {
 
-  let scriptTag = findTag('<script')
-  let divtTag = findTag('<div>')
+  let regexScript = /<script.*?script>/g
+  let regexDiv = /<div.*?div>/g
 
-  let src = getSrcJs(str)
+  let scripts = [...findTags(regexScript)]
+  let divs = [...findTags(regexDiv)]
 
-  console.log(src)
+  addBanner(scripts, divs)
   
 }
 
-const findTag = (tag) => {
-  return str.indexOf(tag)
+const findTags = (regex) => {
+  return str.matchAll(regex)
 }
 
-const getSrcJs = (str) => {
-  var regex = /src=".*?" | <div.*<\/div>/g
-  return str.match(regex)
+const addBanner = (js, divs) => {
+
+  divs.forEach(element => {
+    let divString = element[0]
+    let div = document.createElement('div')    
+    div.innerHTML = divString
+    
+    document.body.append(div)
+  })
+
+  js.forEach(element => {
+
+    if(element[0].match(/src="(.*?)"/)) {
+      
+      let src = element[0].match(/src="(.*?)"/)
+      
+      let script = document.createElement('script')
+      script.src = src[1]
+      document.body.append(script)
+
+    }
+
+    else {
+
+      let scriptContent = element[0].match(/<script.*>(.*?)<\/script>/)
+
+      let script = document.createElement('script')
+      script.innerHTML = scriptContent[1]
+      document.body.append(script)
+
+    }
+  })
+
 }
+
+
