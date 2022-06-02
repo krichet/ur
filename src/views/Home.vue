@@ -424,9 +424,7 @@ import {paymentScreens} from 'db/payment-screens'
 
 import { mapGetters } from 'vuex'
 
-import {displayAds} from 'utils/helpers'
 import {getExtAds} from 'utils/helpers'
-
 
 import '../../node_modules/slick-carousel/slick/slick.css'
 import Slick from 'vue-slick'
@@ -629,8 +627,7 @@ export default {
     // scriptAds.src = 'https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com'
     // document.getElementsByClassName('wrapper')[0].append(scriptAds)
 
-    // getExtAds(6)
-    displayAds()
+    getExtAds()
 
     // FB PLUGINS
     const script = document.createElement('script')
