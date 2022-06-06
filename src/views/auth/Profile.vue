@@ -358,7 +358,7 @@
                     ><i 
                         class="fas"
                         :class="!passwordForm.pwd.show ? 'fa-eye-slash' : 'fa-eye'"
-                    ></i></a>
+                    ></i></a>                    
                 </div>
                 <div class="col-12 text-left mt-3">
                     <p>New password</p>

@@ -6,6 +6,7 @@
         <a href="#" class="box-social-group">
             <img src="/img/twitter.png" alt="">
         </a>
+        <right-banner></right-banner>
     </div>
 </template>
 <script>

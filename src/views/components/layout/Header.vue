@@ -1,75 +1,78 @@
 <template>
   <header>    
-    <div class="wrapper">
-      <div class="logo">
-        <router-link to="/">
-          <span class="logo__img">
-            <img src="/img/logo.png" alt />
-          </span>
-          <span class="logo__text">
-            <span class="logo__title">UniqueRewards</span>
-            <span class="logo__subtitle">EARN EASY PAY! JUST A CLICK AWAY!</span>
-          </span>
-        </router-link>
-      </div>
-      <div class="header-right">
-        <div class="header-img">
-          <a href="#">
-            <img src="/img/header_logo_1.png" alt />
-          </a>
-          <a href="#">
-            <img src="img/header_logo_2.png" alt="">
-          </a>
+    <div class="wrapper header-wrapper">
+      <div>
+        <div class="logo">
+          <router-link to="/">
+            <span class="logo__img">
+              <img src="/img/logo.png" alt />
+            </span>
+            <span class="logo__text">
+              <span class="logo__title">UniqueRewards</span>
+              <span class="logo__subtitle">EARN EASY PAY! JUST A CLICK AWAY!</span>
+            </span>
+          </router-link>
         </div>
-        <div 
-          class="btns-user"
-          v-if="auth"
-        >
-          <router-link :to="{name: 'account'}" class="btns-user__item btn-user">
-            <span class="btns-user__icon"></span>
-            <span class="btns-user__name">My account</span>
-          </router-link>
-          <router-link :to="{name: 'referals'}" class="btns-user__item btn-referrals">
-            <span class="btns-user__icon"></span>
-            <span class="btns-user__name">Referrals</span>
-          </router-link>
-          <router-link :to="{name: 'inbox'}" class="btns-user__item btn-inbox">
-            <a href="#" class="btns-user__item btn-inbox">
-              <span class="btns-user__icon">
-                <span class="btn-inbox__number">2</span>
-              </span>
-              <span class="btns-user__name">Inbox</span>
+        <div class="header-right">
+          <div class="header-img">
+            <a href="#">
+              <img src="/img/header_logo_1.png" alt />
             </a>
-          </router-link>
-          <a 
-            href="#" 
-            class="btns-user__item btn-exit"
-            @click.prevent="logout()"
+            <a href="#">
+              <img src="img/header_logo_2.png" alt="">
+            </a>
+          </div>
+          <div 
+            class="btns-user"
+            v-if="auth"
           >
-            <span class="btns-user__icon"></span>
-            <span class="btns-user__name">Exit</span>
-          </a>
-        </div>
-        <div class="btns-guest">
-          <a 
-            href="#" 
-            class="button button_blue button_login"
-            @click.prevent="$modal.show('login')"
-            v-if="!auth"
-          >
-            <span class="icon icon_button-login"></span>
-            <span class="button-text">Log In</span>
-          </a>
-          <router-link 
-            :to="{name: 'register'}" 
-            class="button button_register"
-            v-if="!auth"
-          >
-            <span class="icon icon_button-reg"></span>
-            <span class="button-text">Registration</span>
-          </router-link>
-        </div>
-      </div>    
+            <router-link :to="{name: 'account'}" class="btns-user__item btn-user">
+              <span class="btns-user__icon"></span>
+              <span class="btns-user__name">My account</span>
+            </router-link>
+            <router-link :to="{name: 'referals'}" class="btns-user__item btn-referrals">
+              <span class="btns-user__icon"></span>
+              <span class="btns-user__name">Referrals</span>
+            </router-link>
+            <router-link :to="{name: 'inbox'}" class="btns-user__item btn-inbox">
+              <a href="#" class="btns-user__item btn-inbox">
+                <span class="btns-user__icon">
+                  <span class="btn-inbox__number">2</span>
+                </span>
+                <span class="btns-user__name">Inbox</span>
+              </a>
+            </router-link>
+            <a 
+              href="#" 
+              class="btns-user__item btn-exit"
+              @click.prevent="logout()"
+            >
+              <span class="btns-user__icon"></span>
+              <span class="btns-user__name">Exit</span>
+            </a>
+          </div>
+          <div class="btns-guest">
+            <a 
+              href="#" 
+              class="button button_blue button_login"
+              @click.prevent="$modal.show('login')"
+              v-if="!auth"
+            >
+              <span class="icon icon_button-login"></span>
+              <span class="button-text">Log In</span>
+            </a>
+            <router-link 
+              :to="{name: 'register'}" 
+              class="button button_register"
+              v-if="!auth"
+            >
+              <span class="icon icon_button-reg"></span>
+              <span class="button-text">Registration</span>
+            </router-link>
+          </div>
+        </div>    
+      </div>
+      <top-banner></top-banner>
     </div>
   </header>
 </template>

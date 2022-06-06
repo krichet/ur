@@ -86,7 +86,8 @@
                 </a>
             </router-link>
         </ul>
-    </aside>
+        <left-banner></left-banner>
+    </aside>    
 </template>
 <script>
 import {mapGetters} from 'vuex'

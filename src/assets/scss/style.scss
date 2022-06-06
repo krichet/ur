@@ -109,6 +109,16 @@ input[type=submit], input[type=button], button{-webkit-appearance: none; outline
 	position: relative;
 }
 
+.header-wrapper,
+.footer-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-banners {
+    display: flex;
+}
+
 /* titles */
 p{
 	font-size: 14px;

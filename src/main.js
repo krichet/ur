@@ -29,6 +29,13 @@ import SocialRight from 'components/layout/SocialRight'
 import UserInfo from 'components/layout/UserInfo'
 import Login from 'components/Login'
 import Offer from 'components/Offer'
+import LeftBanner from 'components/banners/LeftBanner'
+import RightBanner from 'components/banners/RightBanner'
+import TopBanner from 'components/banners/TopBanner'
+import BottomBannerOne from 'components/banners/BottomBannerOne'
+import BottomBannerTwo from 'components/banners/BottomBannerTwo'
+import BottomBannerThree from 'components/banners/BottomBannerThree'
+import BottomVideoBanner from 'components/banners/BottomVideoBanner'
 
 Vue.use(VModal)
 Vue.use(VueIziToast)
@@ -37,6 +44,13 @@ Vue.component('SocialRight',SocialRight)
 Vue.component('UserInfo',UserInfo)
 Vue.component('Login',Login)
 Vue.component('Offer',Offer)
+Vue.component('LeftBanner',LeftBanner)
+Vue.component('RightBanner',RightBanner)
+Vue.component('TopBanner',TopBanner)
+Vue.component('BottomBannerOne',BottomBannerOne)
+Vue.component('BottomBannerTwo',BottomBannerTwo)
+Vue.component('BottomBannerThree',BottomBannerThree)
+Vue.component('BottomVideoBanner',BottomVideoBanner)
 
 Vue.config.productionTip = false
 

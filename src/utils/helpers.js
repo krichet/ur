@@ -37,7 +37,6 @@ export const getExtAds = (mode, cnt) => {
   
 }
 
-// let str = '<script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script> <script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script> <script type="text/javascript" src="https://ads4.krushmedia.com/?c=rtb&m=js&type=s2c&key=fe5c1687e1d07343abc02fb6be1555a7&domain=uniquerewards.com"></script>  <script type="text/javascript"> var infolinks_pid = 2033479; var infolinks_wsid = 0; </script>   <div class="rocket">testdivcone</div> <div class="rocket">testdivcone</div>'
 
 export const displayAds = (banners) => {
 let regexScript = /<script[\s\S]+<\/script>/gi
@@ -51,7 +50,7 @@ let regexScript = /<script[\s\S]+<\/script>/gi
     let divs = findTags(regexDiv, banner)
     // console.log(scripts)
 
-    addBanner(scripts, divs)
+    addBanner(scripts, divs, banner)
 
   })
   
@@ -62,52 +61,83 @@ const findTags = (regex, banner) => {
     return [...banner.src.matchAll(regex)]
 }
 
-const addBanner = (js, divs) => {
+const setBannerPosition = (banner) => {
 
-  divs.forEach(element => {
-    let divString = element[0]
-    let div = document.createElement('div')    
-    div.innerHTML = divString
-    
-    document.body.append(div)
-  })
+  switch(banner.mode) {
+    case '1':
+      return 'left-banner_ext'
+      break
+    case '2':
+      return 'right-banner_ext'
+      break
+    case '3':
+      return 'top-banner_ext'
+      break
+    case '4':
+      return 'bottom-banner1_ext'
+      break    
+    case '5':
+      return 'bottom-banner2_ext'
+      break        
+    case '6':
+      return 'bottom-banner3_ext'
+      break    
+    case '7':
+      return 'bottom-video-banner_ext'
+      break      
+    //in case mode is undefined   
+    default:
+      return 'bottom-banner2_ext'
+  }
 
-  js.forEach(element => {
 
-    if(element[0].match(/src=".*?"/)) {
+}
+
+const addBanner = (js, divs, banner) => {
+  // console.log(setBannerPosition(banner))
+  let bannerPosition = document.getElementsByClassName(setBannerPosition(banner))[0]
+  // console.log(bannerPosition)
+
+  if (bannerPosition) {
+
+    divs.forEach(element => {
+      let divString = element[0]
+      let div = document.createElement('div')    
+      div.innerHTML = divString
       
-      let src = element[0].match(/src="(.*?)"/)
-      console.log(src)
-      
-      let script = document.createElement('script')
-      script.src = src[1]
-      document.body.append(script)
+      bannerPosition.append(div)
+    })
+  
+    js.forEach(element => {
+  
+      if(element[0].match(/src=".*?"/)) {
+        
+        let src = element[0].match(/src="(.*?)"/)
+        // console.log(src)
+        
+        let script = document.createElement('script')
+        script.src = src[1]
+        bannerPosition.append(script)
+  
+      }
+  
+      else {
+        
+        let scriptContent = element[0].match(/<script.*?>([\s\S]+)<\/script>/i)
+        // console.log(scriptContent)
+  
+        let script = document.createElement('script')
+        script.innerHTML = scriptContent[1]      
+        bannerPosition.append(script)
+        
+  
+      }
+  
+    })
 
-    }
+  }
 
-    else {
-      
-      let scriptContent = element[0].match(/<script.*?>([\s\S]+)<\/script>/i)
-      console.log(scriptContent)
-
-      let script = document.createElement('script')
-      script.innerHTML = scriptContent[1]
-      document.body.append(script)
-
-    }
-
-    // if(element[0].match(/<SCRIPT.*?>([\s\S]+)<\/SCRIPT>/)) {
-
-    //   let scriptContent = element[0].match(/<SCRIPT.*?>([\s\S]+)<\/SCRIPT>/)
-    //   // console.log(scriptContent)
-
-    //   let script = document.createElement('script')
-    //   script.innerHTML = scriptContent[1]
-    //   document.body.append(script)
-
-    // }
-
-  })
+  
 
 }
 
